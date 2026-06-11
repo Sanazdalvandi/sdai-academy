@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SDAI Academy – Sanaz Dalvandi</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0B1020;--bg2:#111827;--bg3:#1A2235;--card:#151F35;
+  --border:#1E2D4A;--border2:#243352;
+  --blue:#38BDF8;--purple:#8B5CF6;--cyan:#22D3EE;
+  --blue-dim:#0C2A3D;--purple-dim:#1E1040;
+  --text:#F8FAFC;--text-muted:#CBD5E1;--text-dim:#64748B;
+  --grad:linear-gradient(135deg,#38BDF8,#8B5CF6);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Vazirmatn',sans-serif;color:var(--text);background:var(--bg);direction:rtl;overflow-x:hidden}
+
+/* GLOW */
+.glow-blue{box-shadow:0 0 30px rgba(56,189,248,0.15)}
+.glow-purple{box-shadow:0 0 30px rgba(139,92,246,0.15)}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(11,16,32,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 5%}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff}
+.logo-text{font-size:16px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-sub{font-size:10px;color:var(--text-dim);margin-top:-2px}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--blue)}
+.admin-btn{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(56,189,248,0.3);padding:6px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
+.admin-btn:hover{background:rgba(56,189,248,0.15)}
+
+section{padding:100px 5%}
+.container{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;font-weight:500;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;display:inline-block}
+.section-title{font-size:32px;font-weight:700;color:var(--text);margin-bottom:16px;line-height:1.3}
+.section-sub{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:40px;font-weight:300;max-width:600px}
+
+/* HERO */
+#hero{padding-top:130px;padding-bottom:120px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(56,189,248,0.08) 0%,transparent 70%);pointer-events:none}
+#hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(56,189,248,0.08);color:var(--blue);font-size:12px;padding:6px 16px;border-radius:20px;margin-bottom:20px;border:1px solid rgba(56,189,248,0.2)}
+.hero-badge span{width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-name{font-size:50px;font-weight:700;line-height:1.1;margin-bottom:8px}
+.hero-name .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-brand{font-size:20px;color:var(--text-muted);font-weight:400;margin-bottom:16px}
+.hero-brand span{color:var(--cyan)}
+.hero-sub{font-size:15px;color:var(--text-muted);line-height:1.85;margin-bottom:32px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-grad{background:var(--grad);color:#fff;padding:12px 28px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s;border:none;cursor:pointer;font-family:inherit}
+.btn-grad:hover{opacity:0.85}
+.btn-outline{background:transparent;color:var(--blue);padding:11px 26px;border-radius:9px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid rgba(56,189,248,0.4);transition:all .2s}
+.btn-outline:hover{background:var(--blue-dim)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative}
+.hero-card-main{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:30px;text-align:center;position:relative}
+.hero-card-main::before{content:'';position:absolute;inset:-1px;border-radius:20px;background:var(--grad);z-index:-1;opacity:0.3}
+.logo-big{font-size:44px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.logo-big-sub{font-size:13px;color:var(--text-dim);letter-spacing:3px;margin-top:4px}
+.logo-by{font-size:12px;color:var(--text-dim);margin-top:8px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.htag{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);color:var(--text-muted)}
+.htag.blue{border-color:rgba(56,189,248,0.3);color:var(--blue);background:var(--blue-dim)}
+.htag.purple{border-color:rgba(139,92,246,0.3);color:#A78BFA;background:var(--purple-dim)}
+.htag.cyan{border-color:rgba(34,211,238,0.3);color:var(--cyan);background:rgba(34,211,238,0.06)}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+.hstat{background:var(--bg3);border-radius:10px;padding:12px 8px;text-align:center;border:1px solid var(--border)}
+.hstat-num{font-size:18px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hstat-label{font-size:10px;color:var(--text-dim);margin-top:2px}
+
+/* SERVICES */
+#services{background:var(--bg2)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:50%;opacity:0;transition:opacity .3s}
+.service-card:hover{transform:translateY(-4px)}
+.service-card.s1:hover{border-color:var(--blue)} .service-card.s1::after{background:radial-gradient(circle,rgba(56,189,248,0.1),transparent)}
+.service-card.s2:hover{border-color:var(--purple)} .service-card.s2::after{background:radial-gradient(circle,rgba(139,92,246,0.1),transparent)}
+.service-card.s3:hover{border-color:var(--cyan)} .service-card.s3::after{background:radial-gradient(circle,rgba(34,211,238,0.1),transparent)}
+.service-card:hover::after{opacity:1}
+.s-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.s1 .s-icon{background:var(--blue-dim);border:1px solid rgba(56,189,248,0.2)}
+.s2 .s-icon{background:var(--purple-dim);border:1px solid rgba(139,92,246,0.2)}
+.s3 .s-icon{background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.2)}
+.s-title{font-size:16px;font-weight:600;margin-bottom:10px}
+.s-desc{font-size:13px;color:var(--text-muted);line-height:1.8;font-weight:300}
+
+/* ABOUT */
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-text{font-size:15px;color:var(--text-muted);line-height:1.9;font-weight:300}
+.about-text p{margin-bottom:16px}
+.about-highlights{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.highlight{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted)}
+.h-dot{width:8px;height:8px;border-radius:50%;background:var(--grad);flex-shrink:0}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:border-color .2s}
+.stat-card:hover{border-color:var(--blue)}
+.stat-num{font-size:28px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:12px;color:var(--text-dim);margin-top:5px}
+
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.skill-card{background:var(--card);border-radius:14px;padding:22px;border:1px solid var(--border);transition:border-color .2s}
+.skill-card:hover{border-color:var(--purple)}
+.sk-icon{width:40px;height:40px;border-radius:10px;background:var(--purple-dim);border:1px solid rgba(139,92,246,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+.sk-name{font-size:14px;font-weight:600;margin-bottom:10px}
+.sk-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;background:var(--bg3);color:var(--text-muted);padding:3px 10px;border-radius:20px;border:1px solid var(--border)}
+
+/* PROJECTS */
+#projects{background:var(--bg)}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:border-color .2s,transform .2s}
+.project-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.project-type{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.project-title{font-size:16px;font-weight:600;margin-bottom:10px;line-height:1.4}
+.project-desc{font-size:13px;color:var(--text-muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{font-size:11px;background:var(--blue-dim);color:var(--blue);padding:3px 10px;border-radius:20px;font-weight:500;border:1px solid rgba(56,189,248,0.2)}
+.empty-state{color:var(--text-dim);font-size:14px;text-align:center;padding:50px;background:var(--card);border-radius:14px;border:1px dashed var(--border)}
+
+/* ARTICLES */
+#articles{background:var(--bg2)}
+.articles-list{display:flex;flex-direction:column;gap:12px}
+.article-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:border-color .2s;text-decoration:none}
+.article-card:hover{border-color:var(--purple)}
+.article-date{font-size:12px;color:var(--text-dim);margin-bottom:4px}
+.article-title{font-size:14px;font-weight:500;color:var(--text)}
+.article-cat{font-size:11px;background:var(--purple-dim);color:#A78BFA;padding:3px 14px;border-radius:20px;white-space:nowrap;border:1px solid rgba(139,92,246,0.25);font-weight:500}
+.article-arrow{color:var(--text-dim);font-size:18px;flex-shrink:0}
+
+/* CONTACT */
+#contact{background:var(--bg)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.contact-info{font-size:15px;color:var(--text-muted);line-height:1.85;font-weight:300}
+.contact-links{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.contact-link{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.contact-link:hover{color:var(--blue)}
+.cl-dot{width:7px;height:7px;border-radius:50%;background:var(--grad);flex-shrink:0}
+.form-wrap{display:flex;flex-direction:column;gap:14px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg label{font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:0.3px}
+.fg input,.fg textarea{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:11px 14px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .2s;direction:rtl}
+.fg input:focus,.fg textarea:focus{border-color:var(--blue)}
+.fg textarea{resize:vertical;min-height:110px}
+.form-ok{font-size:13px;color:var(--cyan);display:none;margin-top:4px}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:30px 5%;text-align:center}
+.footer-logo{font-size:20px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.footer-sub{font-size:12px;color:var(--text-dim)}
+
+/* BUTTONS */
+.btn{background:var(--grad);color:#fff;border:none;padding:11px 26px;border-radius:8px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:0.85}
+.btn-sm{padding:7px 16px;font-size:12px;border-radius:6px}
+.btn-danger{background:rgba(239,68,68,0.15);color:#FCA5A5;border:1px solid rgba(239,68,68,0.3)}
+.btn-danger:hover{background:rgba(239,68,68,0.25);opacity:1}
+
+/* OVERLAYS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:18px;width:90%;max-width:540px;max-height:90vh;overflow-y:auto;padding:32px}
+.modal h2{font-size:18px;font-weight:700;margin-bottom:22px;color:var(--text)}
+.modal .fg{margin-bottom:14px}
+.modal-close{float:left;background:none;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;line-height:1;transition:color .2s}
+.modal-close:hover{color:var(--blue)}
+
+#loginOverlay .modal{max-width:380px}
+.login-logo{text-align:center;font-size:32px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.login-title{text-align:center;font-size:14px;color:var(--text-dim);margin-bottom:22px}
+.login-err{font-size:13px;color:#FCA5A5;display:none;margin-bottom:12px;text-align:center;background:rgba(239,68,68,0.1);padding:8px;border-radius:6px}
+
+#adminOverlay .modal{max-width:900px;width:96%}
+.admin-tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:14px;flex-wrap:wrap}
+.atab{background:var(--bg3);color:var(--text-muted);border:1px solid var(--border);padding:7px 18px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+.atab.active{background:var(--blue-dim);color:var(--blue);border-color:rgba(56,189,248,0.3)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.admin-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.admin-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.admin-item-title{font-size:14px;font-weight:500;color:var(--text);flex:1}
+.admin-item-sub{font-size:12px;color:var(--text-dim);margin-top:3px}
+.admin-item-actions{display:flex;gap:8px;flex-shrink:0}
+.unread-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;margin-left:8px;animation:pulse 2s infinite}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(56,189,248,0.3);border-radius:10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">S</div>
+      <div>
+        <div class="logo-text">SDAI Academy</div>
+        <div class="logo-sub">by Sanaz Dalvandi</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">خدمات</a></li>
+      <li><a href="#about">درباره من</a></li>
+      <li><a href="#projects">پروژه‌ها</a></li>
+      <li><a href="#articles">مقالات</a></li>
+      <li><a href="#contact">تماس</a></li>
+      <li><button class="admin-btn" onclick="openLogin()">ورود ادمین</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> AI Education · Research · Medical AI</div>
+        <h1 class="hero-name"><span class="grad">SDAI</span> Academy</h1>
+        <div class="hero-brand">by <span>Sanaz Dalvandi</span></div>
+        <p class="hero-sub">یادگیری کاربردی هوش مصنوعی، توسعه ایده‌های پژوهشی و ارتقای کیفیت مقالات علمی برای دانشجویان، پژوهشگران و متخصصان.</p>
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px;font-style:italic">Learn AI, Build Research, Publish Smarter</div>
+        <div class="hero-btns">
+          <a href="#services" class="btn-grad">مشاهده خدمات</a>
+          <a href="#contact" class="btn-outline">تماس بگیرید</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-main glow-blue">
+          <div class="logo-big">SDAI</div>
+          <div class="logo-big-sub">A C A D E M Y</div>
+          <div class="logo-by">by Sanaz Dalvandi</div>
+          <div class="hero-tags">
+            <span class="htag blue">Medical AI</span>
+            <span class="htag purple">Research</span>
+            <span class="htag cyan">Deep Learning</span>
+            <span class="htag blue">Dental AI</span>
+            <span class="htag purple">Article Consulting</span>
+            <span class="htag cyan">Industrial AI</span>
+          </div>
+          <div class="hero-stats">
+            <div class="hstat"><div class="hstat-num">۵+</div><div class="hstat-label">پروژه AI</div></div>
+            <div class="hstat"><div class="hstat-num">Q1</div><div class="hstat-label">مقالات</div></div>
+            <div class="hstat"><div class="hstat-num">YOLOv8</div><div class="hstat-label">تخصص</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">خدمات</div>
+    <h2 class="section-title">سه ستون اصلی SDAI Academy</h2>
+    <div class="services-grid">
+      <div class="service-card s1">
+        <div class="s-icon">🎓</div>
+        <div class="s-title">دوره‌های هوش مصنوعی</div>
+        <div class="s-desc">آموزش کاربردی AI از مقدماتی تا پیشرفته — deep learning، computer vision، medical AI و ابزارهای صنعتی</div>
+      </div>
+      <div class="service-card s2">
+        <div class="s-icon">📝</div>
+        <div class="s-title">مشاوره مقاله و پژوهش</div>
+        <div class="s-desc">منتورینگ پژوهشی، ویرایش و ارتقای مقالات علمی برای انتشار در ژورنال‌های Q1 و ISI</div>
+      </div>
+      <div class="service-card s3">
+        <div class="s-icon">🔬</div>
+        <div class="s-title">پروژه‌های تخصصی AI</div>
+        <div class="s-desc">پروژه‌های هوش مصنوعی پزشکی، دندانپزشکی و صنعتی — از ایده تا محصول نهایی</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">درباره من</div>
+        <h2 class="section-title">توانمندسازی پژوهشگران با هوش مصنوعی</h2>
+        <div class="about-text">
+          <p>من ساناز دالوندی هستم، محقق و توسعه‌دهنده AI با تمرکز بر بینایی ماشین در حوزه پزشکی و صنعت.</p>
+          <p>SDAI Academy یک آکادمی تخصصی در حوزه هوش مصنوعی، منتورینگ پژوهشی و مشاوره مقاله است که هدفش کمک به دانشجویان و پژوهشگران برای رشد واقعی در این حوزه است.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight"><div class="h-dot"></div>تشخیص پوسیدگی دندان با YOLOv8</div>
+          <div class="highlight"><div class="h-dot"></div>مقالات Q1 در حوزه Medical AI</div>
+          <div class="highlight"><div class="h-dot"></div>مرکز آموزشی و پژوهشی آی‌تک اصفهان</div>
+          <div class="highlight"><div class="h-dot"></div>توسعه ابزارهای AI پزشکی و صنعتی</div>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">۵+</div><div class="stat-label">پروژه هوش مصنوعی</div></div>
+        <div class="stat-card"><div class="stat-num">Q1</div><div class="stat-label">سطح مقالات</div></div>
+        <div class="stat-card"><div class="stat-num">Medical</div><div class="stat-label">تخصص اصلی</div></div>
+        <div class="stat-card"><div class="stat-num">Isfahan</div><div class="stat-label">مکان فعالیت</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">مهارت‌ها</div>
+    <h2 class="section-title">ابزارها و تخصص‌ها</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="sk-icon">🧠</div><div class="sk-name">Deep Learning</div><div class="sk-tags"><span class="tag">PyTorch</span><span class="tag">YOLOv8</span><span class="tag">CNN</span></div></div>
+      <div class="skill-card"><div class="sk-icon">👁</div><div class="sk-name">Computer Vision</div><div class="sk-tags"><span class="tag">OpenCV</span><span class="tag">CLAHE</span><span class="tag">Segmentation</span></div></div>
+      <div class="skill-card"><div class="sk-icon">🦷</div><div class="sk-name">Medical AI</div><div class="sk-tags"><span class="tag">X-ray</span><span class="tag">Bitewing</span><span class="tag">OPG</span></div></div>
+      <div class="skill-card"><div class="sk-icon">⚙️</div><div class="sk-name">Backend & API</div><div class="sk-tags"><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">Gradio</span></div></div>
+      <div class="skill-card"><div class="sk-icon">🌐</div><div class="sk-name">Frontend</div><div class="sk-tags"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">TypeScript</span></div></div>
+      <div class="skill-card"><div class="sk-icon">📊</div><div class="sk-name">Research & Writing</div><div class="sk-tags"><span class="tag">Q1 Journals</span><span class="tag">SHAP</span><span class="tag">XAI</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">پروژه‌ها</div>
+    <h2 class="section-title">پروژه‌های تخصصی AI</h2>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="empty-state">در حال بارگذاری...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="container">
+    <div class="section-label">مقالات</div>
+    <h2 class="section-title">نوشته‌ها و مقالات علمی</h2>
+    <div class="articles-list" id="articlesList">
+      <div class="empty-state">در حال بارگذاری...</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">تماس</div>
+    <h2 class="section-title">بیایید با هم کار کنیم</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>اگر به دنبال همکاری پژوهشی، مشاوره مقاله، یادگیری AI یا پروژه مشترک هستید، خوشحال می‌شوم بشنوم.</p>
+        <div style="font-size:13px;color:var(--blue);margin-top:12px;font-style:italic">AI Education | Research Mentorship | Article Consulting</div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:sanaz@sdaiacademy.com"><div class="cl-dot"></div>sanaz@sdaiacademy.com</a>
+          <a class="contact-link" href="#"><div class="cl-dot"></div>LinkedIn — Sanaz Dalvandi</a>
+          <a class="contact-link" href="#"><div class="cl-dot"></div>GitHub</div></a>
+          <a class="contact-link" href="#"><div class="cl-dot"></div>اصفهان، ایران</a>
+        </div>
+      </div>
+      <div class="form-wrap">
+        <div class="fg"><label>نام شما</label><input id="cName" type="text" placeholder="نام و نام خانوادگی"/></div>
+        <div class="fg"><label>ایمیل</label><input id="cEmail" type="email" placeholder="email@example.com"/></div>
+        <div class="fg"><label>پیام</label><textarea id="cMsg" placeholder="پیام یا درخواست خود را بنویسید..."></textarea></div>
+        <div class="form-ok" id="formOk">✓ پیام شما دریافت شد!</div>
+        <button class="btn-grad" onclick="sendContact()" style="align-self:flex-start;padding:12px 28px;border-radius:9px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;border:none">ارسال پیام</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">SDAI Academy</div>
+  <div class="footer-sub">by Sanaz Dalvandi · Learn AI, Build Research, Publish Smarter · ۱۴۰۳</div>
+</footer>
+
+<!-- LOGIN -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('loginOverlay')">×</button>
+    <div class="login-logo">SDAI</div>
+    <div class="login-title">ورود به پنل مدیریت</div>
+    <div class="login-err" id="loginErr">نام کاربری یا رمز اشتباه است</div>
+    <div class="fg"><label>نام کاربری</label><input id="lUser" type="text" value="sanaz"/></div>
+    <div class="fg" style="margin-top:12px"><label>رمز عبور</label><input id="lPass" type="password" placeholder="رمز عبور"/></div>
+    <button class="btn" style="width:100%;margin-top:18px" onclick="doLogin()">ورود</button>
+    <p style="font-size:12px;color:var(--text-dim);text-align:center;margin-top:12px">رمز پیش‌فرض: admin1234</p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="overlay" id="adminOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('adminOverlay')">×</button>
+    <h2>🛠 پنل مدیریت SDAI</h2>
+    <div class="admin-tabs">
+      <button class="atab active" onclick="showTab('tabProjects',this)">پروژه‌ها</button>
+      <button class="atab" onclick="showTab('tabArticles',this)">مقالات</button>
+      <button class="atab" onclick="showTab('tabMessages',this)">پیام‌ها</button>
+      <button class="atab" onclick="doLogout()" style="margin-right:auto;background:rgba(239,68,68,0.1);color:#FCA5A5;border-color:rgba(239,68,68,0.2)">خروج</button>
+    </div>
+    <div class="tab-content active" id="tabProjects">
+      <div class="admin-list" id="adminProjectsList"></div>
+      <button class="btn btn-sm" onclick="openForm('project')">+ افزودن پروژه</button>
+    </div>
+    <div class="tab-content" id="tabArticles">
+      <div class="admin-list" id="adminArticlesList"></div>
+      <button class="btn btn-sm" onclick="openForm('article')">+ افزودن مقاله</button>
+    </div>
+    <div class="tab-content" id="tabMessages">
+      <div class="admin-list" id="adminMessagesList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="overlay" id="formOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOverlay('formOverlay')">×</button>
+    <h2 id="formTitle"></h2>
+    <div id="formFields"></div>
+    <button class="btn" style="margin-top:8px" onclick="submitForm()">ذخیره</button>
+  </div>
+</div>
+
+<script>
+const API="http://localhost:8000";
+let token=localStorage.getItem("sdai_token")||"";
+let editMode=null,formType="";
+
+async function loadProjects(){
+  try{
+    const r=await fetch(`${API}/api/projects`);
+    const data=await r.json();
+    const g=document.getElementById("projectsGrid");
+    if(!data.length){g.innerHTML='<div class="empty-state">هنوز پروژه‌ای اضافه نشده</div>';return;}
+    g.innerHTML=data.map(p=>`
+      <div class="project-card">
+        <div class="project-type">${p.type||''}</div>
+        <div class="project-title">${p.title}</div>
+        <div class="project-desc">${p.description||''}</div>
+        <div class="project-tags">${(p.tags||'').split(',').filter(t=>t).map(t=>`<span class="ptag">${t.trim()}</span>`).join('')}</div>
+        ${p.link?`<a href="${p.link}" style="font-size:12px;color:var(--blue);margin-top:12px;display:inline-block">مشاهده پروژه ←</a>`:''}
+      </div>`).join('');
+  }catch{document.getElementById("projectsGrid").innerHTML='<div class="empty-state">⚠️ بک‌اند را اجرا کنید: <code>uvicorn main:app --reload</code></div>';}
+}
+
+async function loadArticles(){
+  try{
+    const r=await fetch(`${API}/api/articles`);
+    const data=await r.json();
+    const l=document.getElementById("articlesList");
+    if(!data.length){l.innerHTML='<div class="empty-state">هنوز مقاله‌ای اضافه نشده</div>';return;}
+    l.innerHTML=data.map(a=>`
+      <a class="article-card" href="${a.link||'#'}">
+        <div><div class="article-date">${a.date||''}</div><div class="article-title">${a.title}</div></div>
+        <span class="article-cat">${a.category||''}</span>
+        <span class="article-arrow">←</span>
+      </a>`).join('');
+  }catch{document.getElementById("articlesList").innerHTML='<div class="empty-state">⚠️ بک‌اند در دسترس نیست</div>';}
+}
+
+async function sendContact(){
+  const name=document.getElementById("cName").value;
+  const email=document.getElementById("cEmail").value;
+  const message=document.getElementById("cMsg").value;
+  if(!name||!email||!message)return alert("لطفاً همه فیلدها را پر کنید");
+  try{
+    await fetch(`${API}/api/contact`,{method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({name,email,message})});
+    document.getElementById("formOk").style.display="block";
+    document.getElementById("cName").value="";document.getElementById("cEmail").value="";document.getElementById("cMsg").value="";
+  }catch{alert("خطا در ارسال — بک‌اند را اجرا کنید");}
+}
+
+function openLogin(){if(token){openAdmin();return;}document.getElementById("loginOverlay").classList.add("open");}
+
+async function doLogin(){
+  const u=document.getElementById("lUser").value,p=document.getElementById("lPass").value;
+  try{
+    const r=await fetch(`${API}/api/login`,{method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({username:u,password:p})});
+    if(!r.ok){document.getElementById("loginErr").style.display="block";return;}
+    const d=await r.json();token=d.token;localStorage.setItem("sdai_token",token);
+    closeOverlay("loginOverlay");openAdmin();
+  }catch{document.getElementById("loginErr").style.display="block";}
+}
+
+function doLogout(){token="";localStorage.removeItem("sdai_token");closeOverlay("adminOverlay");}
+
+function openAdmin(){
+  document.getElementById("adminOverlay").classList.add("open");
+  loadAdminProjects();loadAdminArticles();loadAdminMessages();
+}
+
+function showTab(id,el){
+  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".atab").forEach(t=>t.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  if(el)el.classList.add("active");
+}
+
+async function loadAdminProjects(){
+  const r=await fetch(`${API}/api/projects`);const data=await r.json();
+  document.getElementById("adminProjectsList").innerHTML=data.map(p=>`
+    <div class="admin-item">
+      <div><div class="admin-item-title">${p.title}</div><div class="admin-item-sub">${p.type||''}</div></div>
+      <div class="admin-item-actions">
+        <button class="btn btn-sm" onclick='openForm("project",${JSON.stringify(p).replace(/'/g,"&#39;")})'>ویرایش</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteItem('project',${p.id})">حذف</button>
+      </div>
+    </div>`).join('')||'<div class="empty-state">پروژه‌ای نیست</div>';
+}
+
+async function loadAdminArticles(){
+  const r=await fetch(`${API}/api/articles`);const data=await r.json();
+  document.getElementById("adminArticlesList").innerHTML=data.map(a=>`
+    <div class="admin-item">
+      <div><div class="admin-item-title">${a.title}</div><div class="admin-item-sub">${a.category||''} · ${a.date||''}</div></div>
+      <div class="admin-item-actions">
+        <button class="btn btn-sm" onclick='openForm("article",${JSON.stringify(a).replace(/'/g,"&#39;")})'>ویرایش</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteItem('article',${a.id})">حذف</button>
+      </div>
+    </div>`).join('')||'<div class="empty-state">مقاله‌ای نیست</div>';
+}
+
+async function loadAdminMessages(){
+  try{
+    const r=await fetch(`${API}/api/messages`,{headers:{"Authorization":`Bearer ${token}`}});
+    const data=await r.json();
+    document.getElementById("adminMessagesList").innerHTML=data.map(m=>`
+      <div class="admin-item">
+        <div>
+          <div class="admin-item-title">${m.read?'':'<span class="unread-dot"></span>'}${m.name} — ${m.email}</div>
+          <div class="admin-item-sub">${m.message}</div>
+        </div>
+        ${!m.read?`<button class="btn btn-sm" onclick="markRead(${m.id})">خوانده شد</button>`:''}
+      </div>`).join('')||'<div class="empty-state">پیامی نیست</div>';
+  }catch{}
+}
+
+async function markRead(id){
+  await fetch(`${API}/api/messages/${id}/read`,{method:'PUT',headers:{"Authorization":`Bearer ${token}`}});
+  loadAdminMessages();
+}
+
+function openForm(type,item=null){
+  formType=type;editMode=item?{type,id:item.id}:null;
+  document.getElementById("formTitle").textContent=item?`ویرایش ${type==='project'?'پروژه':'مقاله'}`:`افزودن ${type==='project'?'پروژه':'مقاله'}`;
+  const f=document.getElementById("formFields");
+  if(type==='project'){
+    f.innerHTML=`
+      <div class="fg"><label>عنوان *</label><input id="fTitle" value="${item?.title||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>نوع (مثلاً Medical AI)</label><input id="fType" value="${item?.type||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>توضیحات</label><textarea id="fDesc" style="min-height:80px">${item?.description||''}</textarea></div>
+      <div class="fg" style="margin-top:10px"><label>تگ‌ها (با کاما)</label><input id="fTags" value="${item?.tags||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>لینک</label><input id="fLink" value="${item?.link||''}"/></div>`;
+  }else{
+    f.innerHTML=`
+      <div class="fg"><label>عنوان *</label><input id="fTitle" value="${item?.title||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>دسته‌بندی</label><input id="fCat" value="${item?.category||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>تاریخ</label><input id="fDate" value="${item?.date||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>لینک مقاله</label><input id="fLink" value="${item?.link||''}"/></div>
+      <div class="fg" style="margin-top:10px"><label>خلاصه</label><textarea id="fContent" style="min-height:80px">${item?.content||''}</textarea></div>`;
+  }
+  document.getElementById("formOverlay").classList.add("open");
+}
+
+async function submitForm(){
+  const title=document.getElementById("fTitle")?.value;
+  if(!title)return alert("عنوان الزامی است");
+  const headers={"Content-Type":"application/json","Authorization":`Bearer ${token}`};
+  let body,url,method;
+  if(formType==='project'){
+    body={title,type:document.getElementById("fType").value,description:document.getElementById("fDesc").value,tags:document.getElementById("fTags").value,link:document.getElementById("fLink").value};
+    url=editMode?`${API}/api/projects/${editMode.id}`:`${API}/api/projects`;method=editMode?'PUT':'POST';
+  }else{
+    body={title,category:document.getElementById("fCat").value,date:document.getElementById("fDate").value,link:document.getElementById("fLink").value,content:document.getElementById("fContent").value};
+    url=editMode?`${API}/api/articles/${editMode.id}`:`${API}/api/articles`;method=editMode?'PUT':'POST';
+  }
+  await fetch(url,{method,headers,body:JSON.stringify(body)});
+  closeOverlay("formOverlay");
+  loadProjects();loadArticles();
+  if(formType==='project')loadAdminProjects();else loadAdminArticles();
+}
+
+async function deleteItem(type,id){
+  if(!confirm("حذف شود؟"))return;
+  await fetch(`${API}/api/${type}s/${id}`,{method:'DELETE',headers:{"Authorization":`Bearer ${token}`}});
+  loadProjects();loadArticles();
+  if(type==='project')loadAdminProjects();else loadAdminArticles();
+}
+
+function closeOverlay(id){document.getElementById(id).classList.remove("open");}
+document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)o.classList.remove("open");}));
+
+loadProjects();loadArticles();
+</script>
+</body>
+</html>
